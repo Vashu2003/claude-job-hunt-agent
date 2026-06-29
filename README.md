@@ -1,11 +1,26 @@
 # 🤖 Claude Job-Hunt Agent
 
-An autonomous, **Telegram-driven** job-hunting system built on [Claude Code](https://claude.com/claude-code).
+> **An autonomous AI job-application bot** that auto-applies to jobs on **LinkedIn**, **Naukri**, **Indeed**,
+> and startup boards — controlled entirely from **Telegram**. Built on [Claude Code](https://claude.com/claude-code)
+> with browser automation, Gmail reply-tracking, and a human-in-the-loop approval flow.
+
+<p>
+<img alt="Built with Claude Code" src="https://img.shields.io/badge/built%20with-Claude%20Code-8A2BE2">
+<img alt="Python 3" src="https://img.shields.io/badge/python-3.x-blue">
+<img alt="PowerShell" src="https://img.shields.io/badge/PowerShell-5391FE?logo=powershell&logoColor=white">
+<img alt="Platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey">
+<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-green">
+<img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen">
+</p>
+
 It discovers fresh roles across multiple sources, scores each one against your profile, **auto-applies** to
 strong matches, asks you on **Telegram** for borderline ones, watches **Gmail** for replies, and drafts
 referral & cold-emails for you to review — all while you're away from the keyboard.
 
 > You text a Telegram bot `status` / `stop` / `resume` / tweaks. Everything else runs itself.
+
+**Keywords:** automated job search · LinkedIn Easy Apply bot · Naukri auto-apply · AI job application agent ·
+Claude Code automation · Telegram bot · browser automation · Gmail integration · job hunt automation · LLM agent.
 
 ---
 
@@ -140,6 +155,46 @@ templates/   PROFILE / screening-qa / cold-email / outreach / tracker examples
 
 ---
 
+## 🙋 Who is this for?
+
+- Job seekers who want to **apply to more roles in less time** without sitting at the keyboard all day.
+- Developers who want a **real-world Claude Code agent** example: browser automation + connectors + a
+  Telegram control plane + config-driven behavior + human-in-the-loop approvals.
+- Anyone building **autonomous LLM agents** who wants a worked example of safety rails, rate limiting,
+  approval queues, and answer-memory.
+
+## ❓ FAQ
+
+**Does it auto-apply on LinkedIn?** Yes — LinkedIn Easy Apply and Naukri one-click are auto-submitted (within
+your caps). External/company-site roles are sent to your phone as a link to apply manually.
+
+**Is it safe / will my account get banned?** It's built to be conservative: rate limits, randomized delays,
+quiet hours, a `STOP` kill switch, and a JD-reading quality gate. Keep the caps low. Use at your own risk and
+within each platform's terms.
+
+**Do I need to write code?** No — you fill in `PROFILE.md` and `hunt-config.json`, create a Telegram bot, and
+run the slash commands. Everything is config-driven.
+
+**Does it cost money?** It runs on Claude Code (your subscription) + a free Telegram bot. No paid scraping tools.
+
+**Can I use it without auto-apply?** Yes — set `runMode.autoApply: false` for "discover + notify only" (hybrid) mode.
+
+## 🤝 Contributing
+
+PRs and issues welcome — new job sources, ATS form handlers, better scoring, or platform support. Please don't
+commit any personal data (the `.gitignore` is set up to prevent it).
+
+## 🏷️ Topics
+
+`claude` · `claude-code` · `anthropic` · `ai-agent` · `llm` · `job-search` · `job-application` · `automation` ·
+`telegram-bot` · `browser-automation` · `linkedin` · `naukri` · `indeed` · `gmail-api` · `web-scraping` ·
+`autonomous-agent` · `recruiting` · `python` · `powershell` · `productivity`
+
 ## 📜 License
 
 MIT — see [LICENSE](LICENSE). Built with [Claude Code](https://claude.com/claude-code).
+
+---
+
+*Tags: automated job application bot, LinkedIn auto apply, Naukri automation, AI job hunt assistant, Claude
+Code agent example, Telegram-controlled automation, autonomous job search agent, LLM browser automation.*

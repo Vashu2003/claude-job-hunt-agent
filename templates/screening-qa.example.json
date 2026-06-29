@@ -1,0 +1,13 @@
+{
+  "_note": "Reusable answer bank for recruiter screening / chatbot questions that aren't covered by hunt-config.applicationDefaults. COPY this to screening-qa.json in your JobSearch dir and replace the example answers with YOUR honest answers. FLOW (used by /hunt and /poll): (1) When an apply flow shows a screening question, first try applicationDefaults, then look here in `answers` for a semantically-matching question and reuse that answer. (2) If no match is found, DO NOT fabricate: append the question to `pending` (with company/role/link), Telegram-ask the user, and skip-submitting that job (send-link instead so the user can finish manually). (3) When the user replies via Telegram, save it as a new {q,a} in `answers`, clear it from `pending`, confirm, and reuse it automatically next time. Match questions loosely (lowercase, ignore punctuation/role-specific nouns) since companies reword the same question.",
+  "answers": [
+    {"q": "what is your current ctc / current salary", "a": "<your current CTC>", "added": "<date>", "source": "applicationDefaults.currentCompensationLPA"},
+    {"q": "what is your expected ctc / expected salary", "a": "<your expected CTC>", "added": "<date>", "source": "applicationDefaults.expectedCompensationLPA"},
+    {"q": "notice period", "a": "<your notice period>", "added": "<date>", "source": "applicationDefaults.noticePeriodDays"},
+    {"q": "total years of professional experience", "a": "<your experience>", "added": "<date>", "source": "applicationDefaults.yearsExperienceDefault"},
+    {"q": "current location / where are you based", "a": "<your city>", "added": "<date>"},
+    {"q": "are you comfortable with onsite / commuting / relocation", "a": "<Yes/No>", "added": "<date>"},
+    {"q": "can you join immediately", "a": "<your honest answer>", "added": "<date>"}
+  ],
+  "pending": []
+}

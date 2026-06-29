@@ -1,0 +1,5 @@
+{
+  "_comment": "COPY this to telegram-config.json next to telegram-bridge.py and fill in your own values. NEVER commit the real file — it's git-ignored. Create a bot via @BotFather, then run `python telegram-bridge.py whoami` (after messaging your bot once) to discover your chat_id.",
+  "bot_token": "<YOUR_TELEGRAM_BOT_TOKEN_FROM_BOTFATHER>",
+  "chat_id": "<YOUR_NUMERIC_CHAT_ID>"
+}

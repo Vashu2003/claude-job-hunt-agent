@@ -1,0 +1,152 @@
+{
+  "_comment": "Rules for the /hunt cycle. COPY this to hunt-config.json in your JobSearch dir and edit. Conservative defaults to limit LinkedIn ban risk. Fill every <PLACEHOLDER>.",
+  "runMode": {
+    "mode": "autonomous",
+    "autoApply": true,
+    "_note": "AUTONOMOUS requires you to run Claude Code with bypass-permissions and to explicitly want unattended auto-apply. Strong matches (score >= autoApplyThreshold) are auto-submitted with a Telegram update each; borderline (approvalThreshold..autoApplyThreshold) are sent to Telegram for Approve/Reject; rest discarded. Set autoApply=false for HYBRID mode (discover + ask only, never auto-submit). Safety rails always enforced: caps, randomized delays, JD-reading quality gate, never enter passwords/accounts/payment, skip unknown sensitive free-text."
+  },
+  "scoring": {
+    "autoApplyThreshold": 85,
+    "approvalThreshold": 65,
+    "_note": "Score 0-100 (fit vs your PROFILE.md). >=85 auto-submit; 65-84 push you for approval; <65 discard."
+  },
+  "safetyRails": {
+    "dailyAutoApplyCap": 15,
+    "maxAppliesPerCycle": 3,
+    "minSecondsBetweenApplies": 90,
+    "maxSecondsBetweenApplies": 240,
+    "killSwitchFile": "<JOBSEARCH_DIR>/STOP",
+    "quietHours": {
+      "enabled": true,
+      "start": "01:00",
+      "end": "06:00"
+    },
+    "_note": "If the STOP file exists, the cycle does nothing. Rate limits + randomized delays make automation look less bot-like."
+  },
+  "match": {
+    "includeTitles": [
+      "full stack",
+      "fullstack",
+      "frontend",
+      "front end",
+      "react",
+      "python",
+      "backend",
+      "back end",
+      "fastapi",
+      "django",
+      "node",
+      "software engineer",
+      "software developer",
+      "web developer"
+    ],
+    "excludePatterns": [
+      "senior",
+      "sr.",
+      "staff",
+      "principal",
+      "lead",
+      "manager",
+      "architect",
+      "head of",
+      "5+ years",
+      "6+ years",
+      "7+ years",
+      "8+ years",
+      "10+ years",
+      "intern",
+      "unpaid"
+    ],
+    "excludeCompanies": [
+      "<COMPANIES_YOU_DONT_WANT>"
+    ],
+    "excludeJobTypes": [
+      "Contract",
+      "Part-time",
+      "Internship",
+      "Temporary",
+      "Freelance"
+    ],
+    "_excludeJobTypes_note": "For permanent/full-time only. Check the job's type tag AND title/JD; skip if it's contract/part-time/intern/temp/freelance/AI-trainer gig.",
+    "maxYearsExperienceRequired": 3,
+    "locations": [
+      "<YOUR_CITY>",
+      "Remote - India",
+      "Remote India"
+    ],
+    "platforms": [
+      "linkedin",
+      "greenhouse",
+      "ashby",
+      "lever"
+    ],
+    "_note": "Tune includeTitles/excludePatterns/maxYearsExperienceRequired to your level and target roles."
+  },
+  "applicantPriority": {
+    "preferFreshPostings": true,
+    "maxPostingAgeHours": 24,
+    "preferUnder100Applicants": true,
+    "_note": "To chase the 'first 100 applicants' edge: prioritize postings <24h old and showing <100 applicants. Apply to freshest first."
+  },
+  "sources": {
+    "_note": "Where to search and how to act. AUTO-APPLY only on LinkedIn Easy Apply + Naukri one-click (proven). Everything else = SEND-LINK: a strong match's link is sent to Telegram for you to apply from your phone.",
+    "linkedinEasyApply": {
+      "enabled": true,
+      "action": "auto-apply"
+    },
+    "linkedinExternal": {
+      "enabled": true,
+      "action": "send-link",
+      "_note": "Non-Easy-Apply LinkedIn roles (redirect to company/ATS site)."
+    },
+    "naukri": {
+      "enabled": true,
+      "action": "auto-apply-oneclick-else-sendlink",
+      "_note": "WORKS via your AUTHENTICATED Chrome (logged in -> Akamai allows; headless gets blocked). Search naukri.com job URLs in controlled tab, read JD, score. ROUTING for strong matches: direct Naukri one-click Apply -> AUTO-APPLY (submits saved profile/resume; if a chatbot/screening modal appears, answer from applicationDefaults, else skip+send-link). Apply on company site (external) -> SEND-LINK. Counts toward dailyAutoApplyCap. If Akamai block appears, skip Naukri that cycle."
+    },
+    "indeed": {
+      "enabled": false,
+      "action": "send-link",
+      "via": "connector",
+      "_note": "Use the Indeed CONNECTOR tools (mcp__claude_ai_Indeed__*), NOT the browser (Cloudflare-blocked). Read-only: search Indeed + send matching links to Telegram for manual apply. Requires the Indeed connector to be enabled in Claude."
+    },
+    "wellfound": {
+      "enabled": false,
+      "action": "send-link",
+      "login_required": true,
+      "url_hint": "https://wellfound.com/jobs (filter role+location; startups, junior-friendly)",
+      "_note": "AngelList/Wellfound startups - more junior-friendly than LinkedIn. Needs you logged in (authenticated Chrome). DISCOVERY + SEND-LINK (apply = message-to-founder form, varies). If not logged in / blocked, skip. Set enabled=true once you have an account."
+    },
+    "instahyre": {
+      "enabled": false,
+      "action": "send-link",
+      "login_required": true,
+      "url_hint": "https://www.instahyre.com/ (Indian tech, recruiter-matchmaking)",
+      "_note": "Needs you logged in. Mostly recruiter-reachout model; DISCOVERY + SEND-LINK strong matches. Skip if not logged in."
+    },
+    "cutshort": {
+      "enabled": false,
+      "action": "send-link",
+      "login_required": true,
+      "url_hint": "https://cutshort.io/ (Indian startups, AI-matching)",
+      "_note": "Needs you logged in with an up-to-date profile. DISCOVERY + SEND-LINK. Skip if not logged in."
+    }
+  },
+  "contact": {
+    "applyEmail": "<YOUR_APPLICATION_EMAIL>",
+    "resumePath": "<ABSOLUTE_PATH_TO_YOUR_RESUME.pdf>"
+  },
+  "applicationDefaults": {
+    "_note": "Standard answers for LinkedIn Easy Apply / Naukri screening questions. Comp/notice fields are NUMERIC on LinkedIn — enter plain numbers (no 'LPA'/'days' text or it errors). Fill these with YOUR real, honest values.",
+    "linkedInResumeName": "<RESUME_FILE_NAME_AS_STORED_ON_LINKEDIN>.pdf",
+    "currentCompensationLPA": 0,
+    "expectedCompensationLPA": 0,
+    "noticePeriodDays": 30,
+    "yearsExperienceDefault": 1,
+    "comfortableOnsite": "Yes",
+    "comfortableRemote": "Yes",
+    "comfortableCommuting": "Yes",
+    "willingToRelocate": "Yes",
+    "requiresVisaSponsorship": "No"
+  }
+}

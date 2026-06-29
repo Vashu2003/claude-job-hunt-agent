@@ -1,0 +1,36 @@
+# ---- Secrets & personal data: NEVER commit these ----
+# Real Telegram bot token + chat id
+telegram-config.json
+scripts/telegram-config.json
+
+# Telegram runtime state (offsets + approval queues)
+telegram-state.json
+scripts/telegram-state.json
+
+# Your real, filled-in config and profile
+hunt-config.json
+PROFILE.md
+screening-qa.json
+cold-email.md
+outreach.md
+
+# Application data
+tracker.csv
+seen-emails.json
+STOP
+
+# Resumes / cover letters / personal documents
+resume/
+cover-letters/
+*.pdf
+*.docx
+
+# Job profile / misc local state
+.claude-job-profile.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+__pycache__/
+*.pyc

@@ -22,6 +22,17 @@ referral & cold-emails for you to review — all while you're away from the keyb
 **Keywords:** automated job search · LinkedIn Easy Apply bot · Naukri auto-apply · AI job application agent ·
 Claude Code automation · Telegram bot · browser automation · Gmail integration · job hunt automation · LLM agent.
 
+## 🎬 Demo
+
+Everything happens in your Telegram chat — the agent reports each application, sends you links to apply from
+your phone, and asks before borderline ones:
+
+<p align="center">
+  <img src="assets/demo.gif" alt="Telegram demo: the agent reporting applications, sending job links, and asking for approval" width="360">
+</p>
+
+> *Illustrative — using the agent's real message formats. The hunt cycle runs in the background; you only see Telegram.*
+
 ---
 
 ## ✨ What it does
@@ -181,8 +192,9 @@ run the slash commands. Everything is config-driven.
 
 ## 🤝 Contributing
 
-PRs and issues welcome — new job sources, ATS form handlers, better scoring, or platform support. Please don't
-commit any personal data (the `.gitignore` is set up to prevent it).
+PRs and issues welcome — new job sources, ATS form handlers, better scoring, or platform support. See
+[CONTRIBUTING.md](CONTRIBUTING.md) for setup and guidelines. **Please don't commit any personal data** —
+the `.gitignore` is set up to prevent it.
 
 ## 🏷️ Topics
 
